@@ -2,7 +2,6 @@ package Adapter;
 
 import java.util.Iterator;
 import java.util.StringTokenizer;
-import java.util.function.Consumer;
 
 public class StringTokenizerAdapter extends StringTokenizer implements Iterator {
 
@@ -20,12 +19,12 @@ public class StringTokenizerAdapter extends StringTokenizer implements Iterator 
 
     @Override
     public boolean hasNext() {
-        return super.hasMoreTokens();
+        return hasMoreElements();
     }
 
     @Override
     public Object next() {
-        return super.nextToken();
+        return nextElement();
     }
 
 }
