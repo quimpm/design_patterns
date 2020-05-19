@@ -6,16 +6,16 @@ public class CompositeTask implements Task{
 
     private HashSet<Task> listOfTasks;
 
-    public CompositeTask(Money cost, int duration){
+    public CompositeTask(){
         listOfTasks = new HashSet<>();
     }
 
     @Override
     public Money costInEuros() {
         int amount=0;
-        for(Task task : this.listOfTasks){
-            amount = task.costInEuros().getAmount();
-        }
+            for (Task task : this.listOfTasks) {
+                amount += task.costInEuros().getAmount();
+            }
         return new Money(amount);
     }
 
@@ -23,7 +23,7 @@ public class CompositeTask implements Task{
     public int durationInDays() {
         int amount = 0;
         for(Task task : this.listOfTasks){
-            amount = task.durationInDays();
+            amount += task.durationInDays();
         }
         return amount;
     }
