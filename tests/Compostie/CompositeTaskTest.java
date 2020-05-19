@@ -21,7 +21,7 @@ public class CompositeTaskTest {
         rootTask.addSubTask(compTask2);
         compTask2.addSubTask(new SimpleTask(new Money(5), 60));
         compTask2.addSubTask(new SimpleTask(new Money(15), 30));
-        CompositeTask emptyTask = new CompositeTask();
+        emptyTask = new CompositeTask();
     }
 
     @Test
@@ -36,7 +36,7 @@ public class CompositeTaskTest {
 
     @Test
     public void noTasksTest(){
-        assertEquals(0, emptyTask.costInEuros());
+        assertEquals(new Money(0), emptyTask.costInEuros());
         assertEquals(0, emptyTask.durationInDays());
     }
 
