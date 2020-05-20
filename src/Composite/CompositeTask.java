@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 public abstract class CompositeTask implements Task{
 
-    protected HashSet<Task> listOfTasks = new HashSet<>();;
+    protected HashSet<Task> listOfTasks = new HashSet<>();
 
     @Override
     public Money costInEuros() {
