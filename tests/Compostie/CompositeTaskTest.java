@@ -1,8 +1,6 @@
 package Compostie;
 
-import Composite.CompositeTask;
-import Composite.Money;
-import Composite.SimpleTask;
+import Composite.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,23 +13,27 @@ public class CompositeTaskTest {
 
     @BeforeEach
     public void setUp(){
-        rootTask = new CompositeTask();
+        rootTask = new SerialCompositeTask();
         rootTask.addSubTask(new SimpleTask(new Money(10), 20));
-        CompositeTask compTask2 = new CompositeTask();
+        CompositeTask compTask2 = new SerialCompositeTask();
+        CompositeTask compTask3 = new ParallelCompositeTask();
         rootTask.addSubTask(compTask2);
         compTask2.addSubTask(new SimpleTask(new Money(5), 60));
         compTask2.addSubTask(new SimpleTask(new Money(15), 30));
-        emptyTask = new CompositeTask();
+        compTask2.addSubTask(compTask3);
+        compTask3.addSubTask(new SimpleTask(new Money(5), 60));
+        compTask3.addSubTask(new SimpleTask(new Money(15), 30));
+        emptyTask = new SerialCompositeTask();
     }
 
     @Test
     public void costInEurosTest(){
-        assertEquals(new Money(30), rootTask.costInEuros());
+        assertEquals(new Money(50), rootTask.costInEuros());
     }
 
     @Test
     public void durationInDaysTest(){
-        assertEquals(110, rootTask.durationInDays());
+        assertEquals(170, rootTask.durationInDays());
     }
 
     @Test
