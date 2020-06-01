@@ -11,7 +11,15 @@ public class Evaluator implements ExpressionVisitor{
 
     @Override
     public void visit(BinaryOperation exp) {
-        this.evaluation = exp.getValue();
+        exp.getLeft().accept(this);
+        int leftResult = evaluation;
+        exp.getRight().accept(this);
+        int rightResult = evaluation;
+        if(exp instanceof Sum){
+            evaluation = leftResult + rightResult;
+        } else {
+            evaluation = leftResult * rightResult;
+        }
     }
 
     public int getEvaluation() {
