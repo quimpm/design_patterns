@@ -11,8 +11,4 @@ public class Mult extends BinaryOperation{
         expr.visit(this);
     }
 
-    public int getValue(){
-        return this.getRight().getValue() * this.getLeft().getValue();
-    }
-
 }
